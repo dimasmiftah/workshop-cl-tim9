@@ -1,7 +1,7 @@
 <%- include('../includes/header'); %>
 <div class="container">
   <h1>All Post</h1>
-  <a href="/post/create">
+  <a href="/posts/create">
     <button class="btn btn-primary">
       Create Post
     </button>
@@ -23,13 +23,13 @@
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td>
-          <a href="/post/<%= post.id %>/edit">
+          <a href="/posts/edit/<%= post.id %>">
             <button class="btn btn-primary">
               Edit
             </button>
           </a>
           <!-- <a href="/posts/<%= post.id %>/delete"> -->
-          <button onclick="hapus(<%= post.id %>)" class="btn btn-danger">
+          <button onclick="hapus(`<%= post.id %>`)" class="btn btn-danger">
             Delete
           </button>
           <!-- Sweet alert -->
@@ -46,8 +46,8 @@
                 })
                 .then((willDelete) => {
                   if (willDelete) {
-                    window.location.href = "/post/"+id+"/delete/";
-                  } 
+                    window.location.href = "/posts/delete/"+id+"";
+                  }
                 });
             }
           </script>

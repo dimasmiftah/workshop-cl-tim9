@@ -3,7 +3,7 @@ const Post = require('../models/Post');
 module.exports = {
   index: async (req, res) => {
     const posts = await Post.findAll();
-    
+
     return res.render('post/index', {
       posts,
     });
@@ -50,13 +50,11 @@ module.exports = {
   },
 
   destroy: async (req, res) => {
-    const post = await Post.findByPk(req.params.id);
-
-    if (!post) {
-      return res.redirect('/posts');
-    }
-
-    await post.destroy();
+    await Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
 
     return res.redirect('/posts');
   },

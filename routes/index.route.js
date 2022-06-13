@@ -8,9 +8,9 @@ router.get('/', indexController.index);
 
 router.get('/posts', postController.index);
 router.get('/posts/create', postController.create);
-router.post('/posts/store', postController.store);
+router.post('/posts/create', postController.store);
 router.get('/posts/edit/:id', postController.edit);
 router.post('/posts/update/:id', postController.update);
-router.post('/posts/delete/:id', postController.destroy);
+router.get('/posts/delete/:id', postController.destroy);
 
 module.exports = router;
