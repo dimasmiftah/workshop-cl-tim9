@@ -1,0 +1,64 @@
+<%- include('../includes/header'); %>
+<div class="container">
+  <h1>All Post</h1>
+  <a href="/post/create">
+    <button class="btn btn-primary">
+      Create Post
+    </button>
+  </a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% posts.forEach(post => { %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td>
+          <a href="/post/<%= post.id %>/edit">
+            <button class="btn btn-primary">
+              Edit
+            </button>
+          </a>
+          <!-- <a href="/posts/<%= post.id %>/delete"> -->
+          <button onclick="hapus(<%= post.id %>)" class="btn btn-danger">
+            Delete
+          </button>
+          <!-- Sweet alert -->
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <script type="text/javascript">
+            function hapus(id) {
+              console.log(id)
+              swal({
+                  title: "Are you sure?",
+                  text: "Once deleted, you will not be able to recover this data!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    window.location.href = "/post/"+id+"/delete/";
+                  } 
+                });
+            }
+          </script>
+          </a>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+
+</div>
+
+<%- include('../includes/footer'); %>
